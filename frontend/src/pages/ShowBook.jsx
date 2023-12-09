@@ -1,9 +1,8 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
-
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
@@ -15,14 +14,14 @@ const ShowBook = () => {
     axios
       .get(`http://localhost:5555/books/${id}`)
       .then((response) => {
+        setBook(response.data);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setLoading(false);
       });
-  }, [])
-
+  }, []);
 
   return (
     <div className='p-4'>
@@ -58,8 +57,8 @@ const ShowBook = () => {
           </div>
         </div>
       )}
-    </div> 
-  )
-}
+    </div>
+  );
+};
 
-export default ShowBook
+export default ShowBook;
